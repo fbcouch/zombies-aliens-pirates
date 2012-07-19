@@ -30,11 +30,23 @@ public class MainCharacterController : MonoBehaviour {
 	void Update ()
 	{
 		if(Input.GetKey(KeyCode.A) && rigidbody.velocity.x > -m_maxWalkingSpeed)
+		{
+			// Plays the walk animation - stops all other animations
+			animation.Play("ArmatureAction", PlayMode.StopAll);
+			
 			m_InputForce.x -= m_InputWalkSpeed * Time.deltaTime;
+		}
 		if(Input.GetKey(KeyCode.D) && rigidbody.velocity.x < m_maxWalkingSpeed)
+		{
+			// Plays the walk animation - stops all other animations
+			animation.Play("ArmatureAction", PlayMode.StopAll);
+			
 			m_InputForce.x += m_InputWalkSpeed * Time.deltaTime;
+		}
 		if(Input.GetKey(KeyCode.W))
 			Jump();
+		if(Input.GetKey(KeyCode.Space))
+			animation.Play("Wave");
 		
 		// Apply gravity
     	m_Acceleration.y -= m_Gravity * Time.deltaTime;
